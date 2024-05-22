@@ -19,7 +19,7 @@ fs = gridfs.GridFS(mongo.db)
 connection = pika.BlockingConnection(pika.ConnectionParameters("rabbitmq"))
 channel = connection.channel()
 
-@server.router("/login",methods=["POST"])
+@server.route("/login",methods=["POST"])
 def login():
     token, err = access.login(request)
 
@@ -54,4 +54,3 @@ def download():
 
 if __name__== "__main__":
     server.run(host="0.0.0.0", port=8080)
-    
