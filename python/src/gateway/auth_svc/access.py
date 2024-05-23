@@ -1,9 +1,11 @@
 import os, requests
+
+
 def login(request):
-    auth = request.autorization
+    auth = request.authorization
     if not auth:
-        return None, ("missing credentials"), 401
-    
+        return None, ("missing credentials", 401)
+
     basicAuth = (auth.username, auth.password)
 
     response = requests.post(
@@ -11,7 +13,7 @@ def login(request):
     )
 
     if response.status_code == 200:
-        return response.txt, None
+        return response.text, None
     else:
-        return  None, (reponse.txt, response.status_code)
+        return None, (response.text, response.status_code)
     
